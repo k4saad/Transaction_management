@@ -1,9 +1,14 @@
-
 #include <iostream>
+#include<string>
+#include"StudentDBAbstraction.h"
+
+using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+   
+	StudentDBAbstraction studentsDb(":memory:");
+	return 0;
 }
 
 

@@ -1,6 +1,6 @@
 #include<iostream>
 #include"DBAbstraction.h"
-// #include"sqlite3.h"
+#include"sqlite3.h"
 
 using namespace std;
 

@@ -24,12 +24,18 @@
     <ClCompile Include="DBAbstraction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="StudentDBAbstraction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DBAbstraction.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StudentDBAbstraction.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
