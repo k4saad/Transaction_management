@@ -8,6 +8,7 @@ int main()
 {
    
 	StudentDBAbstraction studentsDb(":memory:");
+	studentsDb.insertFirstBatch();
 	return 0;
 }
 
