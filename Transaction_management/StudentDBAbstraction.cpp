@@ -1,7 +1,6 @@
 #include"StudentDBAbstraction.h"
 #include<iostream>
 #include<vector>
-#include<string>
 
 using namespace std;
 
@@ -37,8 +36,7 @@ void StudentDBAbstraction::createStudentsTable() {
 void StudentDBAbstraction::insertFirstBatch() {
 
 	string sql =
-
-		string("INSERT INTO Students('id', 'first', 'last') VALUES \n") +
+		string("INSERT INTO Students(id, first, last) VALUES \n") +
 		string("(1,'Saad', 'Khan'), \n") +
 		string("(2, 'Zaid', 'Khan'), \n") +
 		string("(3, 'Arsh', 'Nabi'); \n");
@@ -46,6 +44,7 @@ void StudentDBAbstraction::insertFirstBatch() {
 	cout << "Query : " << endl << sql << endl;
 
 	bool querySuccess = executeQueryNoResultsBack(sql);
+
 	try {
 		if (querySuccess == false) {
 			throw (string)"Error : Inserting Student";
@@ -56,6 +55,54 @@ void StudentDBAbstraction::insertFirstBatch() {
 	}
 }
 
+//	Code not working in c++
+/*
+void StudentDBAbstraction::insertSecondBatchInATransaction() {
+
+	string sql =
+		//string("BEGIN TRANSACTION; \n") +
+		string("  INSERT INTO Students(id, first, last) VALUES \n") +
+		string("  (4,'Peaush', 'Patel'), \n") +
+		string("  (5, 'Aman', 'Patel'), \n") +
+		string("  (6, 'Pinky', 'Yadav'); \n");
+		//string("COMMIT TRANSACTION; \n");
+	cout << "Query : \n" << sql << endl;
+
+	bool querySuccess = executeQueryNoResultsBack(sql);
+	
+	try {
+		if (querySuccess == false) {
+			throw(string)"Error : Inserting Students in transaction";
+		}
+	}
+	catch (string e) {
+		cout << e << endl;
+	}
+
+}]
+*/
+/*
+void StudentDBAbstraction::insertSecondBatchInATransactionv2() {
+	string sql =
+		string("BEGIN TRANSACTION; \n") +
+		string("  INSERT INTO Students(id, first, last) VALUES(4, 'Peaush', 'Patel'); \n") +
+		string("  INSERT INTO Students(id, first, last) VALUES(5, 'Aman', 'Patel'); \n") +
+		string("  INSERT INTO Students(id, first, last) VALUES(6, 'Pinky', 'Yadav'); \n") +
+		string("COMMIT TRANSACTION; \n");
+	
+	cout << "Query : " << endl << sql << endl;
+	bool querySuccess = executeQueryNoResultsBack(sql);
+	
+	try {
+		if (querySuccess == false) {
+			throw(string)"Error : Inserting Students in multinple query transaction ";
+		}
+	}
+	catch (string e) {
+		cout << e << endl;
+	}
+}
+*/
 void StudentDBAbstraction::printAllStudents() { 
 	string sql = "SELECT id, first, last FROM Students";
 
