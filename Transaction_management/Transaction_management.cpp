@@ -12,6 +12,8 @@ int main()
 	studentsDb.printAllStudents();
 	//studentsDb.insertSecondBatchInATransaction();
 	//studentsDb.insertSecondBatchInATransactionv2();
+	studentsDb.insertSecondBatchInATransactionv3();
+	studentsDb.printAllStudents();
 	
 
 	return 0;

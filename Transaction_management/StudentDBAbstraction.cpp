@@ -103,6 +103,41 @@ void StudentDBAbstraction::insertSecondBatchInATransactionv2() {
 	}
 }
 */
+
+void StudentDBAbstraction::insertSecondBatchInATransactionv3() {
+
+	bool allQuerySuccess = true;
+
+	vector <string> insertStudentIndividuallySql = {
+		"INSERT INTO Students(id, first, last) VALUES(4, 'Peaush', 'Patel'); \n",
+		"INSERT INTO Students(id, first, last) VALUES(5, 'Aman', 'Patel'); \n",
+		"INSERT INTO Students(id, first, last) VALUES(3, 'Pinky', 'Yadav'); \n"};
+
+	sqlite3_exec(db, "BEGIN TRANSACTION;", NULL, NULL, NULL);
+
+	for (int i = 0; i < insertStudentIndividuallySql.size(); i++) {
+		
+		string sql = insertStudentIndividuallySql[i];
+
+		cout << "Query : " << endl << sql << endl;
+
+		bool querySuccess = executeQueryNoResultsBack(sql);
+		
+		if (querySuccess == false) {
+			
+			allQuerySuccess = false;
+			break;
+		}
+	}
+
+	if (allQuerySuccess) {
+		sqlite3_exec(db, "COMMIT TRANSACTION;", NULL, NULL, NULL);
+	}
+	else {
+		sqlite3_exec(db, "ROLLBACK TRANSACTION;", NULL, NULL, NULL);
+	}
+}
+
 void StudentDBAbstraction::printAllStudents() { 
 	string sql = "SELECT id, first, last FROM Students";
 
